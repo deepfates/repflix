@@ -98,9 +98,7 @@ export const ParameterControls = ({
 };
 
 export const useVideoLoader = () => {
-  const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
-    {}
-  );
+  const [loadingStates] = useState<Record<string, boolean>>({});
   const videoRefs = useRef<HTMLVideoElement[]>([]);
 
   const observerRef = useRef<IntersectionObserver>();

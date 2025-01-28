@@ -1,4 +1,4 @@
-import type { Model, Prompt, Parameters } from "./types";
+import type { Model, Parameters } from "./types";
 
 export const MODELS: Model[] = [
   { id: "dune", name: "Dune" },

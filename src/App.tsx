@@ -2,7 +2,7 @@ import { useCallback, useRef, useState, useEffect } from "react";
 import { PlayCircle, PauseCircle } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { MODELS, PARAMS, PROMPTS } from "./lib/constants";
-import { getVideoUrl, preloadVideo } from "./lib/utils";
+import { getVideoUrl } from "./lib/utils";
 import { ParameterControls } from "./components/ParameterControls";
 import { SceneSelector } from "./components/SceneSelector";
 import { VideoGrid } from "./components/VideoGrid";
