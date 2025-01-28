@@ -11,9 +11,9 @@ import { VideoLightbox } from "./components/VideoLightbox";
 export default function App() {
   // State
   const [selectedPrompt, setSelectedPrompt] = useState(PROMPTS[0].id);
-  const [loraStrength, setLoraStrength] = useState(0);
-  const [guidanceScale, setGuidanceScale] = useState(0);
-  const [steps, setSteps] = useState(0);
+  const [loraStrength, setLoraStrength] = useState(1);
+  const [guidanceScale, setGuidanceScale] = useState(1);
+  const [steps, setSteps] = useState(1);
   const [isPlaying, setIsPlaying] = useState(true);
   const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
     {}
@@ -66,43 +66,64 @@ export default function App() {
         onClose={() => setLightboxVideo(null)}
       />
 
-      <div className="max-w-[2000px] mx-auto px-4 py-8">
-        <div className="space-y-6">
-          <SceneSelector
-            prompts={PROMPTS}
-            selectedPrompt={selectedPrompt}
-            onPromptChange={setSelectedPrompt}
-          />
+      <div className="max-w-[2000px] mx-auto">
+        {/* Hero section */}
+        <div className="relative px-4 pt-16 pb-8 bg-gradient-to-b from-black/80 via-black/50 to-transparent">
+          <div className="max-w-3xl space-y-3">
+            <h1 className="text-6xl font-bold tracking-tight">
+              {PROMPTS.find((p) => p.id === selectedPrompt)?.name}
+            </h1>
+            <p className="text-xl text-white/70">
+              <i>{PROMPTS.find((p) => p.id === selectedPrompt)?.desc}</i>
+            </p>
+            <p className="text-lg text-white/60 mt-4 max-w-2xl">
+              {PROMPTS.find((p) => p.id === selectedPrompt)?.prompt}
+            </p>
+          </div>
 
-          <ParameterControls
-            loraStrength={loraStrength}
-            guidanceScale={guidanceScale}
-            steps={steps}
-            onLoraChange={setLoraStrength}
-            onGuidanceChange={setGuidanceScale}
-            onStepsChange={setSteps}
-            params={PARAMS}
-          />
+          {/* Compact controls */}
+          <div className="mt-8 flex flex-col md:flex-row items-center gap-8 w-full max-w-[1200px]">
+            <div className="flex items-center gap-4 w-full">
+              <Button
+                onClick={handlePlayPause}
+                className="rounded-none flex items-center gap-2 bg-red-600 hover:bg-red-700 border-0 text-white shrink-0"
+              >
+                {isPlaying ? (
+                  <>
+                    <PauseCircle className="h-4 w-4" /> Pause All
+                  </>
+                ) : (
+                  <>
+                    <PlayCircle className="h-4 w-4" /> Play All
+                  </>
+                )}
+              </Button>
 
-          <div className="flex justify-center">
-            <Button
-              onClick={handlePlayPause}
-              className="rounded-none flex items-center gap-2 bg-red-600 hover:bg-red-700 border-0 text-white"
-            >
-              {isPlaying ? (
-                <>
-                  <PauseCircle className="h-4 w-4" /> Pause All
-                </>
-              ) : (
-                <>
-                  <PlayCircle className="h-4 w-4" /> Play All
-                </>
-              )}
-            </Button>
+              <div className="flex-1 min-w-0">
+                <SceneSelector
+                  prompts={PROMPTS}
+                  selectedPrompt={selectedPrompt}
+                  onPromptChange={setSelectedPrompt}
+                />
+              </div>
+            </div>
+
+            <div className="w-full md:w-auto shrink-0">
+              <ParameterControls
+                loraStrength={loraStrength}
+                guidanceScale={guidanceScale}
+                steps={steps}
+                onLoraChange={setLoraStrength}
+                onGuidanceChange={setGuidanceScale}
+                onStepsChange={setSteps}
+                params={PARAMS}
+              />
+            </div>
           </div>
         </div>
 
-        <div className="mt-8">
+        {/* Video grid */}
+        <div className="mt-4 px-4 min-h-[50vh]">
           <VideoGrid
             models={MODELS}
             selectedPrompt={selectedPrompt}

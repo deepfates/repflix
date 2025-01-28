@@ -21,22 +21,28 @@ const ParameterControl = ({
   onChange,
   rotate = 0,
 }: ParameterControlProps) => (
-  <div className="space-y-2 text-center flex-1">
-    <div className="flex justify-center mb-1">
+  <div className="w-36 space-y-2 text-center">
+    <div className="flex items-center justify-center gap-4">
+      <Slider
+        value={[value]}
+        onValueChange={([newValue]: number[]) => onChange(newValue)}
+        max={2}
+        step={1}
+        className="w-24 [&_[role=slider]]:rounded-none [&_[role=slider]]:border-white/70"
+      />
+      <div className="text-sm text-white/70 min-w-[2.5rem]">
+        {values[value]}
+      </div>
+    </div>
+    <div className="flex justify-center gap-2">
       <Icon
         className="h-5 w-5 text-white/70"
         style={{ transform: `rotate(${rotate}deg)` }}
       />
+      <Label className="block text-xs text-white/70 whitespace-nowrap">
+        {label}
+      </Label>
     </div>
-    <Label className="block text-sm text-white/70">{label}</Label>
-    <Slider
-      value={[value]}
-      onValueChange={([newValue]: number[]) => onChange(newValue)}
-      max={2}
-      step={1}
-      className="w-24 mx-auto [&_[role=slider]]:rounded-none [&_[role=slider]]:border-white/70"
-    />
-    <div className="text-sm text-white/70">{values[value]}</div>
   </div>
 );
 
@@ -64,7 +70,7 @@ export const ParameterControls = ({
   params,
 }: ParameterControlsProps) => {
   return (
-    <div className="flex justify-center gap-12 py-4">
+    <div className="flex flex-wrap justify-end gap-8 py-4">
       <ParameterControl
         icon={ArrowRight}
         label="LoRA Strength"

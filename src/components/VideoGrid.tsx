@@ -38,7 +38,7 @@ export const VideoGrid = ({
   videoRefs,
 }: VideoGridProps) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 min-h-[50vh] w-full">
       {models.map((model, index) => {
         const videoUrl = getVideoUrl(
           model.id,

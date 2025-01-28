@@ -41,14 +41,7 @@ export const VideoLightbox = ({
           controls
           className="max-h-[90vh] max-w-[90vw]"
           src={videoUrl}
-        >
-          <track
-            kind="captions"
-            src="/captions/empty.vtt"
-            label="No captions available"
-            default
-          />
-        </video>
+        />
       </div>
     </div>
   );

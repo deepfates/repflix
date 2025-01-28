@@ -55,7 +55,7 @@ export const VideoCard = ({
 
   return (
     <div
-      className="group relative cursor-pointer aspect-video"
+      className="group relative cursor-pointer aspect-video bg-black/20"
       onClick={onClick}
       onKeyDown={handleKeyDown}
       role="button"

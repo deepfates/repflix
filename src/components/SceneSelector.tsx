@@ -23,13 +23,7 @@ export const SceneSelector = ({
   const selectedPromptDesc = prompts.find((p) => p.id === selectedPrompt)?.desc;
 
   return (
-    <div className="space-y-2">
-      <div className="flex justify-between items-end">
-        <Label className="text-2xl font-medium text-white/90">
-          Scene Selection
-        </Label>
-        <span className="text-sm text-white/70">{selectedPromptDesc}</span>
-      </div>
+    <div className="space-y-2 w-full">
       <Select value={selectedPrompt} onValueChange={onPromptChange}>
         <SelectTrigger className="w-full rounded-none bg-transparent border-2 border-white/70 text-white hover:border-white transition-colors">
           <SelectValue placeholder="Select a scene" />
