@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-public/videos
+# public/videos
 .vercel
