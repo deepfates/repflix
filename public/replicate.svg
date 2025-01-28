@@ -2,12 +2,12 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <style>
         polygon {
-            fill: black;
+            fill: rgb(185, 28, 28);
         }
 
         @media (prefers-color-scheme: dark) {
             polygon {
-                fill: white;
+                fill: rgb(185, 28, 28);
             }
         }
     </style>
