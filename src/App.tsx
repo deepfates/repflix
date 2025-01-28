@@ -68,8 +68,35 @@ export default function App() {
 
       <div className="relative w-full">
         <div className="max-w-[2000px] mx-auto">
+          {/* Header */}
+          <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent">
+            <div className="max-w-[2000px] mx-auto px-4 py-4 flex justify-between items-center gap-8">
+              <a href="/" className="flex items-center shrink-0">
+                <img src="/repflix.png" alt="Repflix" className="h-8" />
+              </a>
+              <a
+                href="https://replicate.com/blog/fine-tune-video"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 px-6 py-3 bg-red-600/90 hover:bg-red-700 transition-all duration-300 text-white hover:text-white flex-1 max-w-xl border border-transparent hover:border-white/30 hover:shadow-lg hover:scale-[1.02] origin-right transform-gpu"
+              >
+                <div className="flex-1">
+                  <div className="text-sm font-semibold tracking-wide uppercase">
+                    Want to make your own AI videos?
+                  </div>
+                  <div className="flex items-center gap-1 text-[13px] text-white/90 mt-0.5 group-hover:text-white transition-colors">
+                    Learn how to fine-tune video models on Replicate
+                    <span className="inline-block transform transition-transform duration-300 group-hover:translate-x-1.5">
+                      →
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
           {/* Hero section */}
-          <div className="relative px-4 pt-16 pb-8 bg-gradient-to-b from-black/80 via-black/50 to-transparent">
+          <div className="relative px-4 pt-28 pb-8 bg-gradient-to-b from-black/80 via-black/50 to-transparent">
             <div className="max-w-3xl space-y-3">
               <h1 className="text-6xl font-bold tracking-tight">
                 {PROMPTS.find((p) => p.id === selectedPrompt)?.name}
