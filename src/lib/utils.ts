@@ -32,7 +32,7 @@ export const getVideoUrl = (
     scientist: "025",
     martial: "273",
     kitchen: "518",
-    computer: "644",
+    control: "644",
     temple: "740",
     rooftop: "778",
     diner: "779",

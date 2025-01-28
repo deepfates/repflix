@@ -55,7 +55,7 @@ export const VideoCard = ({
 
   return (
     <div
-      className="group relative cursor-pointer"
+      className="group relative cursor-pointer aspect-video"
       onClick={onClick}
       onKeyDown={handleKeyDown}
       role="button"
@@ -72,28 +72,33 @@ export const VideoCard = ({
         </div>
       )}
 
-      <video
-        ref={videoRef}
-        autoPlay={isPlaying}
-        loop
-        muted
-        playsInline
-        className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105 bg-black"
-        src={videoUrl}
-        onLoadStart={handleLoadStart}
-        onLoadedData={() => {
-          console.log(`Video loaded for ${model.name}:`, {
-            url: videoUrl,
-            timestamp: new Date().toISOString(),
-          });
-          onLoad();
-        }}
-        onError={handleError}
-        preload="none"
-      />
+      <div className="relative w-full h-full overflow-hidden">
+        <video
+          ref={videoRef}
+          autoPlay={isPlaying}
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          src={videoUrl}
+          onLoadStart={handleLoadStart}
+          onLoadedData={() => {
+            console.log(`Video loaded for ${model.name}:`, {
+              url: videoUrl,
+              timestamp: new Date().toISOString(),
+            });
+            onLoad();
+          }}
+          onError={handleError}
+          preload="none"
+        />
 
-      <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black to-transparent pt-8 pb-2 px-2">
-        <div className="text-base font-medium text-white/90">{model.name}</div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute bottom-0 left-0 right-0 z-20 p-4">
+          <div className="text-base font-medium text-white/90 transition-transform duration-300 transform group-hover:translate-y-0 translate-y-2">
+            {model.name}
+          </div>
+        </div>
       </div>
     </div>
   );

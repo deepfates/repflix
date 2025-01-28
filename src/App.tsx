@@ -54,7 +54,7 @@ export default function App() {
 
   return (
     <div
-      className="min-h-screen bg-[#141414] text-white"
+      className="min-h-screen w-full bg-[#141414] text-white overflow-x-hidden"
       style={{
         fontFamily:
           "Netflix Sans, Helvetica Neue, Segoe UI, Roboto, sans-serif",
@@ -66,7 +66,7 @@ export default function App() {
         onClose={() => setLightboxVideo(null)}
       />
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-[2000px] mx-auto px-4 py-8">
         <div className="space-y-6">
           <SceneSelector
             prompts={PROMPTS}

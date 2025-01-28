@@ -39,7 +39,7 @@ export const SceneSelector = ({
             <SelectItem
               key={prompt.id}
               value={prompt.id}
-              className="text-white rounded-none hover:bg-white/10 focus:bg-white/10"
+              className="text-white rounded-none hover:bg-white/10 focus:bg-white/10 focus:text-white data-[state=checked]:bg-red-600"
             >
               {prompt.name}
             </SelectItem>
