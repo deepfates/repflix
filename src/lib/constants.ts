@@ -8,8 +8,8 @@ export const MODELS: Model[] = [
   { id: "twinpeaks", name: "Twin Peaks" },
   { id: "pulpfiction", name: "Pulp Fiction" },
   { id: "cowboybebop", name: "Cowboy Bebop" },
-  { id: "budapest", name: "Grand Budapest Hotel" },
-  { id: "spiderverse", name: "Spider-Verse" },
+  { id: "budapest", name: "The Grand Budapest Hotel" },
+  { id: "spiderverse", name: "Spider-Man: Into the Spider-Verse" },
 ];
 
 export const PROMPTS = [
