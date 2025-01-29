@@ -210,7 +210,7 @@ export default function App() {
                 />
                 <div className="flex flex-col gap-6 text-sm text-white/60">
                   <p className="max-w-2xl">
-                    Repflix demonstrates the power of fine-tuned video models on
+                    Repflix shows the power of fine-tuned video models on
                     Replicate. Each video is generated using a different
                     fine-tuned model, showing how the same prompt can produce
                     different styles and interpretations. Try moving the sliders
