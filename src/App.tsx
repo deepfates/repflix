@@ -216,6 +216,20 @@ export default function App() {
                     different styles and interpretations. Try moving the sliders
                     to see how different parameters affect the output.
                   </p>
+                  <p className="max-w-2xl">
+                    These models were trained on video supercuts from{" "}
+                    <a
+                      href="https://youtube.com/@TheBeautyOf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-white underline underline-offset-2"
+                    >
+                      The Beauty Of
+                    </a>{" "}
+                    YouTube channel. They learn both the visual style and camera
+                    movements that make each film or show distinct. The models
+                    and code are open source - give them a try.
+                  </p>
                   <div className="flex flex-col gap-4">
                     <a
                       href="https://replicate.com/deepfates"
@@ -233,6 +247,14 @@ export default function App() {
                     >
                       Fine-tune your own HunyuanVideo model on Replicate
                     </a>{" "}
+                    <a
+                      href="https://github.com/deepfates/repflix"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/60 hover:text-white underline underline-offset-2 w-fit"
+                    >
+                      View this open source project on GitHub
+                    </a>
                     <a
                       href="https://replicate.com/docs"
                       target="_blank"
