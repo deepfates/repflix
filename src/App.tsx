@@ -27,6 +27,7 @@ export default function App() {
   const [lightboxVideo, setLightboxVideo] = useState<string | null>(null);
 
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const explanationRef = useRef<HTMLDivElement>(null);
 
   // Handlers
   const handlePlayPause = useCallback(() => {
@@ -46,6 +47,10 @@ export default function App() {
     setLoadingStates((prev) => ({ ...prev, [modelId]: false }));
     console.error(`Error loading video for model: ${modelId}`);
   }, []);
+
+  const scrollToExplanation = () => {
+    explanationRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   // Effects
   useEffect(() => {
@@ -89,9 +94,18 @@ export default function App() {
             {/* Header */}
             <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent">
               <div className="max-w-[2000px] mx-auto px-4 py-4 flex justify-between items-center gap-8">
-                <a href="/" className="flex items-center shrink-0">
-                  <img src="/repflix.png" alt="Repflix" className="h-8" />
-                </a>
+                <div className="flex items-center gap-6">
+                  <a href="/" className="flex items-center shrink-0">
+                    <img src="/repflix.png" alt="Repflix" className="h-8" />
+                  </a>
+                  <button
+                    onClick={scrollToExplanation}
+                    type="button"
+                    className="text-base text-white/70 hover:text-white transition-colors bg-transparent hover:bg-transparent rounded-none focus:ring-0 focus:ring-offset-0 focus:outline-none border-none hover:border-none"
+                  >
+                    What is this?
+                  </button>
+                </div>
                 <a
                   href="https://replicate.com/blog/fine-tune-video"
                   target="_blank"
@@ -219,13 +233,19 @@ export default function App() {
                   alt="Replicate"
                   className="h-8 opacity-60"
                 />
-                <div className="flex flex-col gap-6 text-sm text-white/60">
+                <div
+                  ref={explanationRef}
+                  className="flex flex-col gap-6 text-sm text-white/60"
+                >
                   <p className="max-w-2xl">
-                    Repflix shows the power of fine-tuned video models on
-                    Replicate. Each video is generated using a different
-                    fine-tuned model, showing how the same prompt can produce
-                    different styles and interpretations. Try moving the sliders
-                    to see how different parameters affect the output.
+                    You can fine-tune video models now on Replicate. But what
+                    can they do? We built Repflix to answer that.
+                  </p>
+                  <p className="max-w-2xl">
+                    Each video is generated using a different fine-tuned model,
+                    showing how the same prompt can produce different styles and
+                    interpretations. Try moving the sliders to see how different
+                    parameters affect the output.
                   </p>
                   <p className="max-w-2xl">
                     These models were trained on video supercuts from{" "}
