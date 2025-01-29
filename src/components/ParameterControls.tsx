@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUp } from "lucide-react";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 import { useState, useRef, useEffect } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface ParameterControlProps {
   icon: ElementType;
@@ -11,6 +12,7 @@ interface ParameterControlProps {
   values: number[];
   onChange: (value: number) => void;
   rotate?: number;
+  tooltip: string;
 }
 
 const ParameterControl = ({
@@ -20,30 +22,36 @@ const ParameterControl = ({
   values,
   onChange,
   rotate = 0,
+  tooltip,
 }: ParameterControlProps) => (
-  <div className="w-36 space-y-2 text-center">
-    <div className="flex items-center justify-center gap-4">
-      <Slider
-        value={[value]}
-        onValueChange={([newValue]: number[]) => onChange(newValue)}
-        max={2}
-        step={1}
-        className="w-24 [&_[role=slider]]:rounded-none [&_[role=slider]]:border-white/70"
-      />
-      <div className="text-sm text-white/70 min-w-[2.5rem]">
-        {values[value]}
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <div className="w-36 space-y-2 text-center cursor-help">
+        <div className="flex items-center justify-center gap-4">
+          <Slider
+            value={[value]}
+            onValueChange={([newValue]: number[]) => onChange(newValue)}
+            max={2}
+            step={1}
+            className="w-24 [&_[role=slider]]:rounded-none [&_[role=slider]]:border-white/70"
+          />
+          <div className="text-sm text-white/70 min-w-[2.5rem]">
+            {values[value]}
+          </div>
+        </div>
+        <div className="flex justify-center gap-2">
+          <Icon
+            className="h-5 w-5 text-white/70"
+            style={{ transform: `rotate(${rotate}deg)` }}
+          />
+          <Label className="block text-xs text-white/70 whitespace-nowrap">
+            {label}
+          </Label>
+        </div>
       </div>
-    </div>
-    <div className="flex justify-center gap-2">
-      <Icon
-        className="h-5 w-5 text-white/70"
-        style={{ transform: `rotate(${rotate}deg)` }}
-      />
-      <Label className="block text-xs text-white/70 whitespace-nowrap">
-        {label}
-      </Label>
-    </div>
-  </div>
+    </TooltipTrigger>
+    <TooltipContent side="bottom">{tooltip}</TooltipContent>
+  </Tooltip>
 );
 
 interface ParameterControlsProps {
@@ -70,13 +78,14 @@ export const ParameterControls = ({
   params,
 }: ParameterControlsProps) => {
   return (
-    <div className="flex flex-wrap justify-end gap-8 py-4">
+    <div className="flex flex-wrap justify-center gap-8">
       <ParameterControl
         icon={ArrowRight}
         label="LoRA Strength"
         value={loraStrength}
         values={params.lora_strength}
         onChange={onLoraChange}
+        tooltip="Controls how much influence the fine-tuning has on the output. Higher values make the video more stylized but may be less stable."
       />
       <ParameterControl
         icon={ArrowUp}
@@ -84,6 +93,7 @@ export const ParameterControls = ({
         value={guidanceScale}
         values={params.guidance_scale}
         onChange={onGuidanceChange}
+        tooltip="Controls how closely the model follows the prompt. Higher values make the video more closely match the prompt but may be less creative."
       />
       <ParameterControl
         icon={ArrowUp}
@@ -92,6 +102,7 @@ export const ParameterControls = ({
         values={params.steps}
         onChange={onStepsChange}
         rotate={45}
+        tooltip="The number of denoising steps. More steps generally means higher quality but takes longer to generate."
       />
     </div>
   );
