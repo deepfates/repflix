@@ -58,6 +58,17 @@ export default function App() {
     );
   }, [selectedPrompt, loraStrength, guidanceScale, steps]);
 
+  // Reset isPlaying when scene changes
+  useEffect(() => {
+    setIsPlaying(true);
+    // Start playing all videos
+    for (const video of videoRefs.current) {
+      if (video) {
+        video.play();
+      }
+    }
+  }, [selectedPrompt]);
+
   return (
     <TooltipProvider>
       <div
